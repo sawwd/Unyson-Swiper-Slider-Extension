@@ -18,4 +18,15 @@ class FW_Extension_Swiper_Slider extends FW_Extension_Slider_Default
 
 		return $collector;
 	}
+
+	protected function _render( $atts, $content = null, $tag = '' ) {
+		if ( ! empty( $atts['slider_id'] ) ) {
+			return fw()->extensions->get( 'slider' )->render_slider( $atts['slider_id'],
+				array(
+					'width'  => empty( $atts['width'] ) ? 300 : $atts['width'],
+					'height' => empty( $atts['height'] ) ? 200 : $atts['height'],
+					'slider' => $atts['sli'],
+				), apply_filters( 'fw_slider_add_shortcode_extra_data', array(), $atts ) );
+		}
+	}
 }
